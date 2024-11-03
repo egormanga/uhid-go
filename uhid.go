@@ -176,6 +176,8 @@ type DeviceData struct {
 	Bus        uint16
 	VendorID   uint32
 	ProductID  uint32
+	Version    uint32
+	Country    uint32
 }
 
 // Device is the main interface carrying all of the created (or soon
@@ -457,8 +459,8 @@ func (dd *DeviceData) createRequest() uhidCreate2Request {
 		bus:            dd.Bus,
 		vendorID:       dd.VendorID,
 		productID:      dd.ProductID,
-		version:        0,
-		country:        0,
+		version:        dd.Version,
+		country:        dd.Country,
 	}
 
 	copy(req.descriptor[:], dd.descriptor)
